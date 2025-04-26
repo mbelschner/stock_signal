@@ -7,16 +7,16 @@ from datetime import datetime
 
 # --- CONFIG ---
 TICKERS = {
-    "ADYEN.AS": {"strategy": "ma", "fast": 7, "slow": 17},
-    "ENR.DE": {"strategy": "ma", "fast": 9, "slow": 19},
-    "GLE.PA": {"strategy": "ma", "fast": 11, "slow": 21},
-    "INTC": {"strategy": "ma", "fast": 6, "slow": 15},
-    "AVGO": {"strategy": "ma", "fast": 10, "slow": 19},
-    "UNH": {"strategy": "ma", "fast": 7, "slow": 15},
+    "ADYEN.AS": {"strategy": "ma", "fast": 7, "slow": 17, "name": "Adyen NV"},
+    "ENR.DE": {"strategy": "ma", "fast": 9, "slow": 19, "name": "Siemens Energy AG"},
+    "GLE.PA": {"strategy": "ma", "fast": 11, "slow": 21, "name": "Société Générale"},
+    "INTC": {"strategy": "ma", "fast": 6, "slow": 15, "name": "Intel Corporation"},
+    "AVGO": {"strategy": "ma", "fast": 10, "slow": 19, "name": "Broadcom Inc"},
+    "UNH": {"strategy": "ma", "fast": 7, "slow": 15, "name": "UnitedHealth Group"},
 }
 
 PUSHOVER_USER_KEY = "ukjj19k3xndb93qeovzj2yk84v5yn2"
-PUSHOVER_APP_TOKEN = "your_app_token"
+PUSHOVER_APP_TOKEN = "ab2ojh3egagcihiktn4ndx95x961yq"
 
 START_HOUR = 9
 END_HOUR = 22
@@ -54,8 +54,13 @@ def main():
         if params["strategy"] == "ma":
             signal = check_ma_signal(ticker, params["fast"], params["slow"])
             if signal:
-                title = f"{ticker} Signal: {signal}"
-                message = f"{signal} signal detected for {ticker} (MA {params['fast']}/{params['slow']})"
+                title = f"{params['name']} ({ticker}) Signal: {signal}"
+                if signal == "BUY":
+                    message = "200er Rachehebel rein hier 🐮"
+                elif signal == "SELL":
+                    message = "Short Sell Everything, the 🐻 is coming"
+                else:
+                    message = f"{signal} signal detected for {params['name']} ({ticker}) (MA {params['fast']}/{params['slow']})"
                 send_pushover(title, message)
 
 if __name__ == "__main__":
