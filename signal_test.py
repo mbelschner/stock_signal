@@ -7,12 +7,13 @@ from datetime import datetime
 
 # --- CONFIG ---
 TICKERS = {
-    "ADYEN.AS": {"strategy": "ma", "fast": 7, "slow": 17, "name": "Adyen NV"},
     "ENR.DE": {"strategy": "ma", "fast": 9, "slow": 19, "name": "Siemens Energy AG"},
     "GLE.PA": {"strategy": "ma", "fast": 11, "slow": 21, "name": "Société Générale"},
     "INTC": {"strategy": "ma", "fast": 6, "slow": 15, "name": "Intel Corporation"},
     "AVGO": {"strategy": "ma", "fast": 10, "slow": 19, "name": "Broadcom Inc"},
     "UNH": {"strategy": "ma", "fast": 7, "slow": 15, "name": "UnitedHealth Group"},
+    "UCG.MI": {"strategy": "ma", "fast": 7, "slow": 15, "name": "Unicredit SpA"},
+    "HSBC": {"strategy": "ma", "fast": 7, "slow": 15, "name": "HSBC Holdings"}
 }
 
 PUSHOVER_USER_KEY = "ukjj19k3xndb93qeovzj2yk84v5yn2"
