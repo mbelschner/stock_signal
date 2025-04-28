@@ -33,7 +33,7 @@ def send_pushover(title, message):
     requests.post("https://api.pushover.net/1/messages.json", data=payload)
 
 def check_ma_signal(ticker, fast, slow):
-    df = yf.download(ticker, period="7d", interval="15m", progress=False)
+    df = yf.download(ticker, period="7d", interval="5m", progress=False)
     if df.empty:
         return None
     df["fast_ma"] = df["Close"].rolling(fast).mean()
