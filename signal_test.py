@@ -13,7 +13,8 @@ TICKERS = {
     "AVGO": {"strategy": "ma", "fast": 10, "slow": 19, "name": "Broadcom Inc"},
     "UNH": {"strategy": "ma", "fast": 7, "slow": 15, "name": "UnitedHealth Group"},
     "UCG.MI": {"strategy": "ma", "fast": 7, "slow": 15, "name": "Unicredit SpA"},
-    "HSBC": {"strategy": "ma", "fast": 7, "slow": 15, "name": "HSBC Holdings"}
+    "HSBC": {"strategy": "ma", "fast": 7, "slow": 15, "name": "HSBC Holdings"},
+    "RHM.DE": {"strategy": "ma", "fast": 9, "slow": 20, "name": "Der Rheiner"}
 }
 
 PUSHOVER_USER_KEY = "ukjj19k3xndb93qeovzj2yk84v5yn2"
@@ -33,7 +34,7 @@ def send_pushover(title, message):
     requests.post("https://api.pushover.net/1/messages.json", data=payload)
 
 def check_ma_signal(ticker, fast, slow):
-    df = yf.download(ticker, period="7d", interval="5m", progress=False)
+    df = yf.download(ticker, period="7d", interval="15m", progress=False)
     if df.empty:
         return None
     df["fast_ma"] = df["Close"].rolling(fast).mean()
